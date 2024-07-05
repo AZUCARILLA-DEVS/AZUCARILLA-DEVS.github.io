@@ -1,0 +1,8 @@
+<module id="assetspath">
+    <resources>
+        <resource path="/assets/thumb" prefix="assets/thumb" />
+    </resources>
+    <components>
+        <component package="custom" />
+    </components>
+</module>

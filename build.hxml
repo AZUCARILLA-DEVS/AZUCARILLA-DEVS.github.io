@@ -1,0 +1,9 @@
+-cp src
+-main Main
+-D analyzer-optimize
+
+-lib haxeui-core
+-lib haxeui-html5
+-lib format
+
+-js build/html5/Main.js

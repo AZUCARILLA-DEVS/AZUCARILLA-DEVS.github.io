@@ -17,5 +17,7 @@ class IFrameDialog extends Dialog {
         view = new IFrame();
         view.url = '${Constants.COMIC_URL}${comicTitle}.pdf';
         addComponent(view);
+        view.width = this.width - 10;
+        view.height = this.height - 10;
     }
 }

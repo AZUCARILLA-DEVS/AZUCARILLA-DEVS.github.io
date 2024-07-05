@@ -1,6 +1,6 @@
 package;
 
-import haxe.ui.ToolkitAssets;
+import haxe.ui.containers.dialogs.Dialog.DialogEvent;
 import haxe.ui.containers.Grid;
 import haxe.ui.components.Button;
 import haxe.ui.components.Link;
@@ -8,7 +8,6 @@ import haxe.ui.components.Image;
 import haxe.ui.containers.dialogs.MessageBox.MessageBoxType;
 import haxe.ui.containers.dialogs.Dialogs;
 import haxe.ui.containers.VBox;
-import haxe.ui.constants.ScaleMode;
 import haxe.ui.events.MouseEvent;
 
 @:build(haxe.ui.ComponentBuilder.build("assets/main-view.xml"))
@@ -43,8 +42,12 @@ class MainView extends VBox {
             }
             i.icon = image;
             i.text = 'FIM ${index}';
-            i.onClick = (MouseEvent) -> {
-                new IFrameDialog(i.text).show();
+            i.onClick = function(e:MouseEvent) {
+                var dialogview = new IFrameDialog(i.text);
+                dialogview.onDialogClosed = function(e:DialogEvent) {
+                    trace(e.button);
+                }
+                dialogview.showDialog(true);
             };
             index++;
         }

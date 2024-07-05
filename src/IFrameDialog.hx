@@ -9,7 +9,6 @@ class IFrameDialog extends Dialog {
 
     public function new(title:String) {
         super();
-        this.modal = false;
         this.width = 900;
         this.height = 700;
 

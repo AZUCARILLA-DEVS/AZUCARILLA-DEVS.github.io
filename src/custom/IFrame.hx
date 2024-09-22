@@ -18,12 +18,13 @@ import js.html.IFrameElement;
     
 */
 class IFrame extends Box {
-    private var _iframe:IFrameElement = null;
+    public var _iframe(default, null):IFrameElement = Browser.document.createIFrameElement();
+    public var onCreate:Void -> Void;
     
     public function new() {
         super();
-        _iframe = Browser.document.createIFrameElement();
         _iframe.frameBorder = "none";
+        _iframe.onloadend = onCreate;
         this.element.append(_iframe);
     }
     

@@ -15,8 +15,15 @@ class IFrameDialog extends Dialog {
         comicTitle = title;
 
         view = new IFrame();
+        view.onCreate = () -> {
+            view._iframe.referrerPolicy = "origin";
+            view._iframe.contentWindow.postMessage(
+                "Hi Pinkie!", 
+                "https://azucarilla.wixsite.com"
+            );
+        }
         view.url = '${Constants.COMIC_URL}${comicTitle}.pdf';
-        view.width = 800;
+        view.width = 820;
         view.height = 600;
         addComponent(view);
     }

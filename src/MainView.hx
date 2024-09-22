@@ -1,5 +1,6 @@
 package;
 
+import util.Constants;
 import haxe.ui.containers.dialogs.Dialog.DialogEvent;
 import haxe.ui.containers.Grid;
 import haxe.ui.components.Button;
@@ -12,9 +13,6 @@ import haxe.ui.events.MouseEvent;
 
 @:build(haxe.ui.ComponentBuilder.build("assets/main-view.xml"))
 class MainView extends VBox {
-    
-    var aboutmsg = "Comic Picker v1.0\n\nProgramador: Jaime Humberto Macias Bustamante
-    \n\n© 2024 Azucarilla-Devs";
 
     public function new() {
         super();
@@ -46,6 +44,7 @@ class MainView extends VBox {
                 var dialogview = new IFrameDialog(i.text);
                 dialogview.onDialogClosed = function(e:DialogEvent) {
                     trace(e.button);
+                    dialogview.disposeComponent();
                 }
                 dialogview.showDialog(true);
             };
@@ -55,6 +54,6 @@ class MainView extends VBox {
     
     @:bind(about, MouseEvent.CLICK)
     private function onMyButton(e:MouseEvent) {
-        Dialogs.messageBox(aboutmsg, "Acerca de", MessageBoxType.TYPE_INFO);
+        Dialogs.messageBox(Constants.ABOUT, "Acerca de", MessageBoxType.TYPE_INFO);
     }
 }

@@ -1,3 +1,4 @@
+import js.html.MessageEvent;
 import util.Constants;
 import custom.IFrame;
 import haxe.ui.containers.dialogs.Dialog;
@@ -16,11 +17,13 @@ class IFrameDialog extends Dialog {
 
         view = new IFrame();
         view.onCreate = () -> {
-            view._iframe.referrerPolicy = "origin";
-            view._iframe.contentWindow.postMessage(
-                "Hi Pinkie!", 
-                "https://azucarilla.wixsite.com"
-            );
+            view._iframe.contentWindow.addEventListener('message', (e:MessageEvent) -> {
+                trace(e.origin);
+                if(e.origin == 'https://azucarilla.wixsite.com') {
+                    trace("Oh! Hi Twilight!");
+                }
+                else return;
+            });
         }
         view.url = '${Constants.COMIC_URL}${comicTitle}.pdf';
         view.width = 820;
